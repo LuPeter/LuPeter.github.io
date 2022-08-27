@@ -82,4 +82,4 @@ export default class Component extends React.Component {
 -   函數式程式設計(functional programming)
 
 > _架構的三大關注點： **函式**、**元件分離**、**資料管理**_  
-> (原文為： function，應可解釋為**_功能_**)
+> (原文為 function，應可解釋為**_功能_**)
