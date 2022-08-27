@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-	title: 'LuPeter Study Notes',
-	tagline: 'Dinosaurs are cool',
-	url: 'https://your-docusaurus-test-site.com',
+	title: 'LuPeter',
+	tagline: 'Study Notes',
+	url: 'https://LuPeter.github.io',
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
@@ -57,24 +57,24 @@ const config = {
 		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 		({
 			navbar: {
-				title: 'My Site',
+				title: 'Lu Peter Study Notes',
 				logo: {
-					alt: 'My Site Logo',
-					src: 'img/logo.svg',
+					alt: 'Logo',
+					src: 'img/logo.png',
 				},
 				items: [
-					{
-						type: 'doc',
-						docId: 'intro',
-						position: 'left',
-						label: 'Tutorial',
-					},
-					{ to: '/blog', label: 'Blog', position: 'left' },
-					{
-						href: 'https://github.com/facebook/docusaurus',
-						label: 'GitHub',
-						position: 'right',
-					},
+					// {
+					// 	type: 'doc',
+					// 	docId: 'intro',
+					// 	position: 'left',
+					// 	label: 'Study',
+					// },
+					{ to: '/docs/category/tech-study', label: 'Study', position: 'left' },
+					// {
+					// 	href: 'https://github.com/LuPeter/LuPeter.github.io',
+					// 	label: 'GitHub',
+					// 	position: 'right',
+					// },
 				],
 			},
 			footer: {
