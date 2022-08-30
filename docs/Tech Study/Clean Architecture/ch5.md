@@ -198,41 +198,7 @@ class NamedPoint extends Point {
     所以指向函式的指標很是危險的。
 -   雖然 OO 沒有帶來多型，但是使得多型更安全和方便。
 -   作者認為最有威力和代表性。
-
-### JS 範例:
-
-![js-polymorphism](./img/js-polymorphism-01.png)
-
-```js
-// Animal
-// 介面
-    abstract class Animal {
-        public abstract speak(): void;
-    }
-
-```
-
-```js
-// cat
-    import Animal from 'path/to/animal.js'
-
-    class Cat extends Animal {
-        public speak() {
-            console.log('Meow')
-        }
-    }
-```
-
-```js
-// cat
-    import Animal from 'path/to/animal.js'
-
-    class Dog extends Animal {
-        public speak() {
-            console.log('Woof')
-        }
-    }
-```
+-   可以使用**_interface_** 或是 **_abstract class_**來實現，目的是解耦兩個物件。
 
 ### [介面(Interface) vs 抽象類別(Abstract Class)][interface-vs-abstract]
 
@@ -337,12 +303,11 @@ class Dog extends Animal {
     -   抽象類別不能實例化，每一個實例都是具體子類別的實例。
     -   抽象類別不止可以實現抽象方法，更可以包含商業邏輯與**私人屬性**。
 
-> -   ## _interface 比較著在重描述互相沒有關聯的類別，所共通的方法和類別。_
-
+> -   _interface 比較著在重描述互相沒有關聯的類別，所共通的方法和類別。_
 > -   _abstract class 描述共同得物件屬性，比較多件層關係 (如：動物(比較抽象) => 人(比較具體))_
 
 ```ts
-// more example...
+// more example of compose abstract and interface...
 
 abstract class Machine {
 	public battery: number
@@ -401,7 +366,126 @@ class Car extends Vehicle implements USB {
 }
 ```
 
-## 依賴反向
+### 多型的威力 - 依賴反向
+
+> _原本程的依賴性只能依照控制流來決定，而多型能夠讓依賴反轉。_
+
+![dependency](./img/dependency.png)
+
+```ts
+// 如果沒有多型
+class Computer {
+	execute() {
+		console.log('computer USB executing....')
+	}
+
+	stop() {
+		console.log('computer USB stopping....')
+	}
+}
+
+class Car {
+	execute() {
+		console.log('Car USB executing....')
+	}
+
+	stop() {
+		console.log('Car USB stopping....')
+	}
+}
+
+const computer = new Computer()
+const car = new Car()
+
+computer.execute()
+car.execute()
+
+// [LOG]: "computer USB executing...."
+// [LOG]: "car USB executing...."
+```
+
+> 加入 interface 實現反轉依賴
+
+```ts
+interface USB {
+	execute(): void
+	stop(): void
+}
+
+class Computer implements USB {
+	execute() {
+		console.log('computer USB executing....')
+	}
+
+	stop() {
+		console.log('computer USB stopping....')
+	}
+}
+
+class Car implements USB {
+	execute() {
+		console.log('Car USB executing....')
+	}
+
+	stop() {
+		console.log('Car USB stopping....')
+	}
+}
+
+function executeTheUSB(usb: USB) {
+	usb.execute()
+}
+
+executeTheUSB(new Computer())
+executeTheUSB(new Car())
+
+// [LOG]: "computer USB executing...."
+// [LOG]: "car USB executing...."
+```
+
+```ts
+// more example using abstract class...
+abstract class Animal {
+	public name: string
+	constructor(name: string) {
+		this.name = name
+	}
+}
+
+class Dog extends Animal {
+	constructor(name: string) {
+		super(name)
+	}
+
+	sleep() {
+		//...
+	}
+}
+
+class People extends Animal {
+	constructor(name: string) {
+		super(name)
+	}
+
+	walk() {
+		//...
+	}
+}
+
+function speakMyName(animal: Animal) {
+	console.log('my name is: ' + animal.name)
+}
+
+speakMyName(new Dog('小白'))
+speakMyName(new Dog('彼得'))
+
+// [LOG]: "my name is: 小白"
+// [LOG]: "my name is: 彼得"
+```
+
+## 總結：
+
+_**多型**與**依賴反向**才是物件導向設計的厲害之處_
 
 [polymorphism-wiki]: https://zh.wikipedia.org/zh-tw/%E5%A4%9A%E6%80%81_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)
 [interface-vs-abstract]: https://medium.com/%E7%A8%8B%E5%BC%8F%E6%84%9B%E5%A5%BD%E8%80%85/%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E4%B8%AD%E7%9A%84%E4%BB%8B%E9%9D%A2%E8%88%87%E6%8A%BD%E8%B1%A1%E9%A1%9E%E5%88%A5%E6%98%AF%E4%BB%80%E9%BA%BC-1199804ccc5f
