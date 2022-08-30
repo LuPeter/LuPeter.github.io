@@ -4,6 +4,8 @@ sidebar_label: 'Ch5: 物件導向程式設計'
 sidebar_position: 5
 ---
 
+## 定義
+
 > _物件導向程式設計是透過**多型**，來獲得每個系統中的程式碼**依賴方向**有絕對控制力_
 
 ## 常見的物件導向的定義誤區
@@ -485,7 +487,7 @@ speakMyName(new Dog('彼得'))
 
 ## 總結：
 
-_**多型**與**依賴反向**才是物件導向設計的厲害之處_
+[_**多型**與**依賴反向**才是物件導向設計的厲害之處_](#定義)
 
 [polymorphism-wiki]: https://zh.wikipedia.org/zh-tw/%E5%A4%9A%E6%80%81_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)
 [interface-vs-abstract]: https://medium.com/%E7%A8%8B%E5%BC%8F%E6%84%9B%E5%A5%BD%E8%80%85/%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E4%B8%AD%E7%9A%84%E4%BB%8B%E9%9D%A2%E8%88%87%E6%8A%BD%E8%B1%A1%E9%A1%9E%E5%88%A5%E6%98%AF%E4%BB%80%E9%BA%BC-1199804ccc5f
