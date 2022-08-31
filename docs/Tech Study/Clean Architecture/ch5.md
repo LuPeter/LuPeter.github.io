@@ -326,6 +326,7 @@ abstract class Vehicle {
 	public abstract turn(): void
 }
 
+// 有共用的USB功能，但是不能被繼承。
 interface USB {
 	execute(): void
 	stop(): void
@@ -374,6 +375,10 @@ class Car extends Vehicle implements USB {
 
 ![dependency](./img/dependency.png)
 
+### 如果沒有多型
+
+![no-poly](./img/ed.png)
+
 ```ts
 // 如果沒有多型
 class Computer {
@@ -406,7 +411,11 @@ car.execute()
 // [LOG]: "car USB executing...."
 ```
 
-> 加入 interface 實現反轉依賴
+### 如果有多型實現依賴反向
+
+![has-poly](./img/de.jpeg)
+
+-   加入 interface 實現反向依賴
 
 ```ts
 interface USB {
@@ -444,6 +453,8 @@ executeTheUSB(new Car())
 // [LOG]: "computer USB executing...."
 // [LOG]: "car USB executing...."
 ```
+
+-   加入 abstract class 實現反向依賴
 
 ```ts
 // more example using abstract class...
@@ -484,6 +495,16 @@ speakMyName(new Dog('彼得'))
 // [LOG]: "my name is: 小白"
 // [LOG]: "my name is: 彼得"
 ```
+
+## 依賴反轉的優勢
+
+_business rules 將不會有任何 UI 或資料庫程式_
+![benefit](./img/ch5-dependency.jpeg)
+
+> 因為模組之間不是只有單向的依賴關係，可以使模組之間更加獨立已達到：
+
+-   可獨立性部署
+-   可獨立性開發
 
 ## 總結：
 
