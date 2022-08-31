@@ -80,6 +80,42 @@ main()
 // [LOG]: "bill: $290"
 ```
 
+-   Function 中只能有 Expression 而非指令( instructions )。
+    > [詳細看參考][expression-vs-instruction]
+    -   Expression 表達式、表示式、運算式，**會回傳結果**
+    -   instructions 陳述式，執行一些程式，不會回傳結果
+
+```ts
+// 回傳 number
+function sum(x: number, y: number) {
+	return x + y
+}
+
+// 回傳 void
+function hello() {
+	console.log('hello')
+	// return void 被忽略
+}
+```
+
+-   Function 必須是 「Pure」、沒有 Side Effect。
+    -   side effect: 對外部造成影響
+
+```ts
+let count: number = 10
+
+function sideEffectFunc() {
+	// do something...
+
+	count++
+}
+
+sideEffectFunc()
+console.log('count = ' + count)
+
+// count = 11
+```
+
 > _函數式程式設計中的變數是**不會改變的**_
 
 ## 變數可變性？
@@ -98,3 +134,4 @@ main()
 
 [fp-wiki]: https://zh.wikipedia.org/zh-tw/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B
 [fp-less-lee-medium]: https://medium.com/%E4%B8%80%E5%80%8B%E5%B0%8F%E5%B0%8F%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E9%9A%A8%E6%89%8B%E7%AD%86%E8%A8%98/javascript-functional-programming-%E4%B8%80%E6%96%87%E5%88%B0%E5%BA%95%E5%85%A8%E7%B4%80%E9%8C%84-95ff19d9892
+[expression-vs-instruction]: https://www.casper.tw/development/2020/09/17/js-expression/
